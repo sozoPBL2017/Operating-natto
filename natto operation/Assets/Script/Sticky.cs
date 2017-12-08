@@ -60,15 +60,25 @@ public class Sticky : MonoBehaviour {
 
         int i;
         GameObject[] tagobjs = GameObject.FindGameObjectsWithTag("been");
+        /*
         var direction = tagobjs[0].transform.position - me.transform.position;
         var distance = direction.magnitude;
         var gravity = k / distance;
-
+        */
+        /*
         for (i = 0; tagobjs[i] != null; i++)
         {
             direction = tagobjs[i].transform.position - me.transform.position;
             myRigidBody.AddForce(gravity * direction.normalized, ForceMode.Force);
-        }      
+        } 
+        */
+        foreach  (GameObject tagobj in tagobjs)
+        {
+            var direction = tagobj.transform.position - me.transform.position;
+            var distance = direction.magnitude;
+            var gravity = k / distance;
+            myRigidBody.AddForce(gravity * direction.normalized, ForceMode.Force);
+        }
     }
 
     double fruidForce(double dist, double sigma, double velo_relative, double length_bond, double length_friction,
